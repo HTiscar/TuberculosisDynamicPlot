@@ -22,8 +22,6 @@ library(magrittr)
 library(dplyr)
 library(gifski)
 
-### Phase 1: Make Static Plot according to selected Year
-
 data_preprocessing <- function(df){
   df1 <- df %>% select(country, year, e_pop_num, e_inc_num, e_mort_num, e_inc_100k)
   colnames(df1) <- c("country", "year", "Population", "IncidenceT", "MortalityT", "Inc100K")
@@ -198,8 +196,12 @@ make_dynamicplot <- function(df1, df2 = world_map, plot_title = "TB Incidence 20
 }
 
 
+### Phase One: Load and Preprocess Data 
+
 tuberculosis <- read.csv('TB2020.csv')
 tb <- data_preprocessing(tuberculosis)
+
+### Phase Two: Make Static Plot according to selected Year
 
 get_data(df = tb, select_year = TRUE, year_input = 2018)
 
@@ -210,7 +212,7 @@ tb_2018 <- recode_dataset(df1 = tb_2018)
 tb_plot2018 <- make_staticplot(df1 = tb_2018, plot_title = "Incidence of TB 2018")
 tb_plot2018
 
-### Phase Two: Make a Dynamic Plot that Transitions by Years 
+### Phase Three: Make a Dynamic Plot that Transitions by Years 
 
 get_data(tb)
 
@@ -219,6 +221,7 @@ tb_years <- recode_dataset(df1 = tb_years)
 
 tb_dynamicplot <- make_dynamicplot(df1 = tb_years)
 tb_dynamicplot
+
 
 
 
