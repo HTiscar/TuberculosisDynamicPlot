@@ -10,6 +10,15 @@ By using the dplyr library, we are able to select the exact year in which the co
 
  <p align="center"><img src="https://github.com/HTiscar/TuberculosisDynamicPlot/blob/master/TB_2018%20Percentage.png"></p>
  
- This is the visualization of the static plot using the data available in 2018. There is some caviats, mainly in the continous scale used to visualize the data. I believe there is a better visualization, mainly by assigning individual colors to a specific range. Will implement it later using the <b>aes = </b> in ggplot2.
+This is the visualization of the static plot using the data available in 2018. There is some caviats, mainly in the continous scale used to visualize the data. I believe there is a better visualization, mainly by assigning individual colors to a specific range. Will implement it later using the <b>aes = </b> in ggplot2.
+
+## Plotting the Dynamic Map
+
+In order to produce a dynamic plot of the entire data, I used the <b>gganimate</b> library. This includes a variety of functions that allow you to recover gif format images, however you have to transform your data in very specific manner in order for it to work. 
+
+The main challenge here was to produce a plot which would be able to differentiate the real cases by countries. Since there is little variation in the original dataset year by year, I implemented a range in order to have a more pronounce data visualization effect. 
 
 <p align="center"><img src="https://github.com/HTiscar/TuberculosisDynamicPlot/blob/master/TB%20100%20K.gif"></p>
+
+
+This is the plot produced by R, and there are still some problems with the visualization. Mainly, I have to reshape the plot in a higher resolution, cahnge the continous scale to a better range, and there are some countries with no available data that don't appear in the plot at the beginning. This is mainly because of the way that the <b>transition_manual()</b> function works. I believe that transition_time() would be a better implementation, however, there is a problem I havent been able to identify of how my data is transformed in order to use this function correctly. I will be updating soon. 
